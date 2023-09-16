@@ -1,41 +1,21 @@
 import './index.css'
 
 const ThumbnailItem = props => {
-  const {imageDetails, changeActiveImage, activeTab} = props
-
-  const {
-    id,
-    imageUrl,
-    thumbnailUrl,
-    imageAltText,
-    thumbnailAltText,
-  } = imageDetails
-
-  let image = null
-  let activeAlt = null
-
-  if (activeTab === id) {
-    image = imageUrl
-    activeAlt = imageAltText
-  } else {
-    image = thumbnailUrl
-    activeAlt = thumbnailAltText
-  }
-
-  console.log(image, activeAlt)
-
-  const onClickImage = () => {
-    changeActiveImage(id)
-  }
+  const {image, changeTab, isActive} = props
+  const {thumbnailUrl, thumbnailAltText, id} = image
+  const showClearly = isActive ? 'apply-active-class' : 'image'
 
   return (
-    <li className="image-list">
-      <button type="button" className="button">
+    <li className="list-item">
+      <button
+        className="image-button"
+        type="button"
+        onClick={() => changeTab(id)}
+      >
         <img
-          src={image}
-          alt={activeAlt}
-          className="image"
-          onClick={onClickImage}
+          src={thumbnailUrl}
+          alt={thumbnailAltText}
+          className={showClearly}
         />
       </button>
     </li>
