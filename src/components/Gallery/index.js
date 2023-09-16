@@ -74,36 +74,36 @@ const imagesList = [
 ]
 
 class Gallery extends Component {
-  state = {activeImageId: imagesList[0].id}
+  state = {activeTab: imagesList[0].id}
 
-  changeActiveImage = id => {
-    this.setState({activeImageId: id})
+  onChangeTab = id => {
+    this.setState({activeTab: id})
   }
 
   render() {
-    const {activeImageId} = this.state
-    const activeCardImage = imagesList.filter(
-      eachImage => eachImage.id === activeImageId,
+    const {activeTab} = this.state
+    const filterImageDetails = imagesList.filter(
+      image => image.id === activeTab,
     )
-    console.log(activeCardImage[0].imageUrl)
+
+    const {imageAltText, imageUrl} = filterImageDetails[0]
+
+    console.log(imageUrl)
+    console.log(activeTab)
 
     return (
-      <div className="app-container">
+      <div className="bg-container">
         <div className="card">
-          <img
-            src={activeCardImage[0].imageUrl}
-            alt={activeCardImage[0].imageAltText}
-            className="card-image"
-          />
+          <img src={imageUrl} alt={imageAltText} className="main-image" />
           <h1 className="heading">Nature Photography</h1>
           <p className="para">Nature Photography by Rahul</p>
-          <ul className="images-list">
-            {imagesList.map(eachImage => (
+          <ul className="lists-container">
+            {imagesList.map(image => (
               <ThumbnailItem
-                imageDetails={eachImage}
-                key={eachImage.id}
-                changeActiveImage={this.changeActiveImage}
-                activeTab={activeImageId}
+                key={image.id}
+                image={image}
+                changeTab={this.onChangeTab}
+                isActive={activeTab === image.id}
               />
             ))}
           </ul>
