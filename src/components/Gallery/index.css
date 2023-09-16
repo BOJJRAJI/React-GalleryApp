@@ -12,13 +12,13 @@
 .main-image {
   height: 400px;
 }
-.para {
+.heading {
   font-size: 30px;
   font-family: 'Roboto';
   color: #1e293b;
   font-weight: bold;
 }
-.heading {
+.para {
   font-size: 20px;
   font-family: 'Roboto';
   color: #64748b;
